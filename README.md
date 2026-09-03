@@ -1,5 +1,3 @@
-Correct. The project name should be **E-Commerce Executive Dashboard**. Here is the corrected README with that name throughout.
-
 # E-Commerce Executive Dashboard
 
 An end-to-end e-commerce analytics project built using the **Online Retail II** transactional dataset.
@@ -72,14 +70,14 @@ Main fields:
 * Revenue calculation
 * Transaction classification
 * Python validation
-* Documentation
-
-### Upcoming
-
 * PostgreSQL database setup
 * Data loading
 * SQL transformations and analysis
 * Analytical queries
+* Documentation
+
+### Upcoming
+
 * Power BI dashboard
 * Final business insights
 
@@ -97,9 +95,7 @@ Additional explicitly invalid or non-analytical records were removed:
 
 A total of **20 rows** were removed for these exclusions.
 
-The cleaned dataset contains:
-
-**1,033,016 rows**
+The cleaned dataset contains: **1,033,016 rows**
 
 The cleaning process also:
 
@@ -151,12 +147,30 @@ e-commerce-executive-dashboard/
 │   └── 03_data_validation.ipynb
 │
 ├── sql/
+|   ├── 01_database_setup.sql
+│   ├── 02_raw_load.sql
+│   ├── 03_clean_transactions.sql
+│   ├── 04_dimensions.sql
+│   ├── 05_fact_sales.sql
+│   ├── 06_revenue_analysis.sql
+│   ├── 07_customer_analysis.sql
+│   ├── 08_rfm_analysis.sql
+│   ├── 09_retension_analysis.sql
+│   ├── 10_product_analysis.sql
+│   ├── 11_market_basket.sql
+│   └── 12_geographic_analysis.sql
 │
 ├── powerbi/
 │
-├── docs/
-│   └── methodology.md
-│
+├── documentation/
+│   ├── power bi/
+|   ├── sql/
+|   |      └── postgresql_layer.md
+|   ├── python/
+|   |      └── python_layer.md
+│   └── business_insights.md
+|
+|
 ├── .gitignore
 └── README.md
 ```
@@ -173,6 +187,6 @@ e-commerce-executive-dashboard/
 
 ## Project Status
 
-**Current stage: Python data preparation and validation completed.**
+**Current stage: PostgreSQL, SQL analysis completed.**
 
-The downstream PostgreSQL, SQL analysis, and Power BI dashboard stages are yet to be completed.
+The downstream Power BI dashboard stages are yet to be completed.

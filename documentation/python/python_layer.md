@@ -260,14 +260,14 @@ The source column names were renamed to provide a consistent analytical schema.
 
 | Original Column | Cleaned Column |
 | --------------- | -------------- |
-| `Invoice`       | `InvoiceNo`    |
-| `StockCode`     | `StockCode`    |
-| `Description`   | `Description`  |
-| `Quantity`      | `Quantity`     |
-| `InvoiceDate`   | `InvoiceDate`  |
-| `Price`         | `UnitPrice`    |
-| `Customer ID`   | `CustomerID`   |
-| `Country`       | `Country`      |
+| `Invoice`       | `invoice_number`    |
+| `StockCode`     | `stock_code`    |
+| `Description`   | `description`  |
+| `Quantity`      | `quantity`     |
+| `InvoiceDate`   | `invoice_date`  |
+| `Price`         | `unit_price`    |
+| `Customer ID`   | `customer_id`   |
+| `Country`       | `country`      |
 
 ---
 
@@ -275,16 +275,16 @@ The source column names were renamed to provide a consistent analytical schema.
 
 | Column        | Final Data Type  |
 | ------------- | ---------------- |
-| `InvoiceNo`   | `string`         |
-| `StockCode`   | `string`         |
-| `Description` | `string`         |
-| `Quantity`    | `Int64`          |
-| `InvoiceDate` | `datetime64[ns]` |
-| `UnitPrice`   | `float64`        |
-| `CustomerID`  | `Int64`          |
-| `Country`     | `string`         |
+| `invoice_number`   | `string`         |
+| `stock_code`   | `string`         |
+| `description` | `string`         |
+| `quantity`    | `Int64`          |
+| `invoice_date` | `datetime64[ns]` |
+| `unit_price`   | `float64`        |
+| `customer_id`  | `Int64`          |
+| `country`     | `string`         |
 
-Missing `CustomerID` values were preserved using the nullable `Int64` type.
+Missing `customer_id` values were preserved using the nullable `Int64` type.
 
 ---
 
@@ -302,7 +302,7 @@ df.drop_duplicates(keep="first")
 | Rows after deduplication  | 1,033,036 |
 | Rows removed              |    34,335 |
 
-Only exact duplicates were removed. Rows were not deduplicated using partial keys such as `InvoiceNo + StockCode`.
+Only exact duplicates were removed. Rows were not deduplicated using partial keys such as `invoice_number + stock_code`.
 
 ---
 
@@ -313,9 +313,9 @@ Invoices beginning with `C` were treated as cancellation-related transactions.
 One cancellation record contained a positive quantity. Its quantity was normalized to a negative value.
 
 ```text
-IF InvoiceNo starts with "C"
-AND Quantity > 0
-THEN Quantity = Quantity × -1
+IF invoice_number starts with "C"
+AND quantity > 0
+THEN quantity = quantity × -1
 ```
 
 Result:
@@ -325,12 +325,12 @@ Result:
 
 ---
 
-### Step 5: Normalize StockCode Case
+### Step 5: Normalize stock_code Case
 
 StockCodes were converted to uppercase to remove case-based inconsistencies.
 
 ```text
-df["StockCode"] = df["StockCode"].str.upper()
+df["stock_code"] = df["stock_code"].str.upper()
 ```
 
 This normalizes values such as:
@@ -356,10 +356,10 @@ No StockCodes were removed solely because of case differences.
 A `TransactionStatus` field was created using the following rule:
 
 ```text
-IF InvoiceNo starts with "C"
+IF invoice_number starts with "C"
     → Cancelled
 
-ELSE IF Quantity < 0
+ELSE IF quantity < 0
     → Return/Adjusted
 
 ELSE
@@ -390,7 +390,7 @@ These records were excluded because they were either explicit testing entries or
 
 Breakdown:
 
-| StockCode   | Rows Removed |
+| stock_code   | Rows Removed |
 | ----------- | -----------: |
 | `TEST001`   |           15 |
 | `TEST002`   |            2 |
@@ -405,17 +405,17 @@ Financial and operational StockCodes such as `POST`, `D`, `M`, `BANK CHARGES`, `
 
 ### Step 8: Handle Missing Values
 
-Missing `CustomerID` values were retained.
+Missing `customer_id` values were retained.
 
-Missing `Description` values were also retained because the absence of a description does not by itself invalidate the transaction.
+Missing `description` values were also retained because the absence of a description does not by itself invalidate the transaction.
 
-No arbitrary values such as `0`, `"Unknown"`, or `"N/A"` were substituted for missing CustomerIDs.
+No arbitrary values such as `0`, `"Unknown"`, or `"N/A"` were substituted for missing customer_ids.
 
 ---
 
 ### Step 9: Create Date-Derived Fields
 
-The following fields were derived from `InvoiceDate`:
+The following fields were derived from `invoice_date`:
 
 * `TransactionDate`
 * `TransactionTime`
@@ -425,10 +425,10 @@ The following fields were derived from `InvoiceDate`:
 Examples:
 
 ```text
-TransactionDate  = InvoiceDate.dt.date
-TransactionTime  = InvoiceDate.dt.time
-TransactionYear  = InvoiceDate.dt.year
-TransactionMonth = InvoiceDate.dt.month
+TransactionDate  = invoice_date.dt.date
+TransactionTime  = invoice_date.dt.time
+TransactionYear  = invoice_date.dt.year
+TransactionMonth = invoice_date.dt.month
 ```
 
 These fields support daily, monthly, and yearly analysis.
@@ -442,7 +442,7 @@ Revenue fields were calculated at the transaction-line level.
 #### Normal Transactions
 
 ```text
-Gross Revenue = Quantity × UnitPrice
+Gross Revenue = quantity × unit_price
 Return Value = 0
 ```
 
@@ -450,7 +450,7 @@ Return Value = 0
 
 ```text
 Gross Revenue = 0
-Return Value = ABS(Quantity × UnitPrice)
+Return Value = ABS(quantity × unit_price)
 ```
 
 #### Net Revenue
@@ -616,8 +616,8 @@ The remaining non-cancelled negative-quantity records were retained because they
 
 | Column        | Raw Missing | Cleaned Missing |
 | ------------- | ----------: | --------------: |
-| `Description` |       4,382 |           4,271 |
-| `CustomerID`  |     243,007 |         235,147 |
+| `description` |       4,382 |           4,271 |
+| `customer_id` |     243,007 |         235,147 |
 | Other columns |           0 |               0 |
 
 The reduction in missing-value counts is attributable to the removal of duplicate and explicitly excluded rows. Missing values were not artificially imputed.
@@ -635,9 +635,9 @@ The validation confirms that:
 3. No exact duplicates remain.
 4. The cancellation positive-quantity anomaly was normalized.
 5. The historical date range was preserved.
-6. Missing CustomerIDs and descriptions were retained where applicable.
+6. Missing customer_ids and descriptions were retained where applicable.
 7. Revenue calculations reconcile correctly.
-8. Changes in invoice, customer, and StockCode counts are explainable by the documented exclusions.
+8. Changes in invoice, customer, and stock_code counts are explainable by the documented exclusions.
 9. Financial and operational transaction types required for revenue analysis were retained.
 
 The resulting processed dataset is therefore suitable for downstream PostgreSQL loading and analytical work.
