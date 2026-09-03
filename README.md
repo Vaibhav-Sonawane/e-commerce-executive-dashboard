@@ -230,7 +230,7 @@ Additional customer-level analytical tables support the Power BI model:
 `fact_sales` contains:
 
 | Metric | Value |
-|---|---:|
+| --- | ---: |
 | Fact rows | 1,033,016 |
 | Distinct orders | 53,608 |
 | Distinct customers | 5,940 |
@@ -258,7 +258,7 @@ The PostgreSQL analytical layer covers:
 ### Overall Revenue Metrics
 
 | Metric | Value |
-|---|---:|
+| --- | ---: |
 | Gross Revenue | 20,317,358.308 |
 | Returns | 1,462,775.250 |
 | Net Revenue | **18,854,583.058** |
@@ -287,7 +287,7 @@ The available methodology does not provide sufficient period-start/period-end de
 Revenue is highly concentrated among a relatively small group of customers:
 
 | Customer Group | Revenue Share |
-|---|---:|
+| --- | ---: |
 | Top 1% | 31.42% |
 | Top 5% | 51.69% |
 | Top 10% | 63.88% |
@@ -310,7 +310,7 @@ Reference date:
 ```
 
 | Segment | Customers | Segment Revenue |
-|---|---:|---:|
+| --- | ---: | ---: |
 | Champions | 1,315 | 11,464,973.405 |
 | Loyal Customers | 1,412 | 2,584,409.347 |
 | At Risk | 837 | 1,331,570.632 |
@@ -330,7 +330,7 @@ The business implication is that retention efforts should prioritize **high-valu
 The leading products differ depending on the commercial objective:
 
 | Rank | Revenue | Units | Customer Reach |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 1 | REGENCY CAKESTAND 3 TIER | WORLD WAR 2 GLIDERS ASSTD DESIGNS | WHITE HANGING HEART T-LIGHT HOLDER |
 | 2 | WHITE HANGING HEART T-LIGHT HOLDER | WHITE HANGING HEART T-LIGHT HOLDER | REGENCY CAKESTAND 3 TIER |
 | 3 | JUMBO BAG RED RETROSPOT | JUMBO BAG RED RETROSPOT | BAKING SET 9 PIECE RETROSPOT |
@@ -367,7 +367,7 @@ to prevent unordered product pairs from being counted twice.
 Selected high-association pairs include:
 
 | Product A | Product B | Pair Orders | Confidence | Lift |
-|---|---|---:|---:|---:|
+| --- | --- | ---: | ---: | ---: |
 | 23632 | 85099B | 10 | 100.00% | 10.3726 |
 | 85049a | 85099C | 49 | 96.08% | 21.3080 |
 | 23611 | 84032A | 15 | 93.75% | 58.6688 |
@@ -383,7 +383,7 @@ These associations are candidates for targeted cross-sell and bundle testing. Th
 The United Kingdom is the leading revenue market:
 
 | Country | Revenue | Customers | Orders | AOV | Revenue / Customer |
-|---|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: |
 | United Kingdom | 15,985,109.697 | 5,408 | 49,088 | 325.64 | 2,955.83 |
 | EIRE | 609,953.780 | 5 | 806 | 756.77 | 121,990.76 |
 | Netherlands | 548,330.700 | 23 | 250 | 2,193.32 | 23,840.47 |
@@ -458,7 +458,7 @@ Key visuals:
 Documented dashboard KPI values include:
 
 | KPI | Value |
-|---|---:|
+| --- | ---: |
 | Net Revenue | 18.85M |
 | YoY % | 90.93% |
 | Repeat Rate | 1.04% |
@@ -500,7 +500,7 @@ Key visuals:
 ### Dashboard Slicers
 
 | Slicer | Page |
-|---|---|
+| --- | --- |
 | `dim_date[year_month]` | Executive Overview |
 | `dim_country[country]` | Executive Overview |
 | `rfm_segments[rfm_segment]` | Customer Intelligence |
@@ -515,7 +515,7 @@ Key visuals:
 The documented reconciliation confirms:
 
 | Metric | Result |
-|---|---|
+| --- | --- |
 | Gross Revenue | PASS |
 | Return Value | PASS |
 | Net Revenue | PASS |
