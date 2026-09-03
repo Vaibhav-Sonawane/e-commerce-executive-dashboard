@@ -144,8 +144,6 @@ GROUP BY invoice_number, stock_code HAVING COUNT(*) > 1
 
 # SQL Analytical Findings
 
-The following sections record the output of each analytical script. All figures below are placeholders pending execution against the live database.
-
 ### Revenue Analysis
 
 | Measure              | Value         |
@@ -218,16 +216,16 @@ Reference Date: `MAX(transaction_date) + 1 day` = "2011-12-10"
 | Champions           | 1315      | 11464973.405    |
 | Loyal Customers     | 1412      | 2584409.3470    |
 | At Risk             | 837       | 1331570.6320    |
-| Potential Loyalists | 1539      | 511872.3120     |
-| Need Attention      | 452       | 210772.3000     |
-| New Customers       | 361       | 135429.8910     |
-| Lost                | 24        | 50759.9010      |
+| Lost                | 1539      | 511872.3120     |
+| New Customers       | 452       | 210772.3000     |
+| Potential Loyalists | 361       | 135429.8910     |
+| Need Attention      | 24        | 50759.9010      |
 
 | Measure                    | Value        |
 | -------------------------- | -----------: |
 | At-Risk customers          | 837          |
 | At-Risk historical revenue | 1331570.6320 |
-| At-Risk % of total revenue | 8.17 %       |
+| At-Risk % of total revenue | 7.06 %       |
 
 ---
 

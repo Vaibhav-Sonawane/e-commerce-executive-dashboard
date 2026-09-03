@@ -6,7 +6,7 @@
 
 | Measure                                                          |                               Value |
 | ---------------------------------------------------------------- | ----------------------------------: |
-| Net Revenue trend, period start → end                            | 796535.0000 → 432719.0600 (-45.68%) |
+| Net Revenue trend, period start → end                            | 796535.0000 -> 432719.0600 (-45.68%) |
 | MoM growth (most recent month)                                   |                             -70.28% |
 | YoY growth (most recent comparable month)                        |                             -42.05% |
 | Primary driver of change (Customers / Orders per Customer / AOV) |                                 N/A |
@@ -83,7 +83,6 @@
 | ----------------------------------- | ------------------------------ |
 | Top country by revenue              | United Kingdom — 15985109.6970 |
 | Top country by revenue per customer | EIRE — 121990.76               |
-| Same country in both?               | N                              |
 
 **Observation:** The United Kingdom is by far the leading market by revenue, while EIRE has the highest documented revenue per customer.
 
@@ -107,3 +106,76 @@
 The methodology documents Python-side distinct customers of **5,941** versus **5,940** in the fact table. Therefore, the customer reconciliation cannot correctly be marked as PASS based on the documented results.
 
 All other documented reconciliation checks pass: Net Revenue is **18,854,583.058** on both sides, distinct orders are **53,608** on both sides, and distinct products are **5,300** on both sides.
+
+# Power BI Dashboard — Business Insights
+
+Findings observed from the completed 3-page dashboard, following check against PostgreSQL.
+
+---
+
+## Executive Overview Findings
+
+| Measure                | Value                            |
+| ---------------------- | -------------------------------: |
+| Net Revenue            | 18854583.05                      |
+| YoY %                  | 90.93%                           |
+| Repeat Rate            | 1.04%                            |
+| Top country by revenue | United Kingdom                   |
+| Top product by revenue | Regency Cakestand 3 tier - 22423 |
+
+**Observation:** Net revenue is strong at 18.85M, with 90.93% YoY growth. However, the repeat rate is only 1.04%, indicating very limited repeat purchasing. The UK is the leading revenue market, while the Regency Cakestand 3 tier is the top product.
+
+**Diagnosis:** Growth appears to be driven primarily by new-customer acquisition and/or one-time purchases rather than customer retention. Revenue concentration in the UK and a single leading product may also indicate dependency on specific markets and products.
+
+**Implication:** The business has strong top-line momentum but weak customer retention, which can make future growth increasingly dependent on continually acquiring new customers. Concentration also creates exposure if UK demand or the leading product declines.
+
+**Action:** Prioritize retention initiatives—post-purchase engagement, personalized cross-sell/upsell, and repeat-purchase incentives—while using the UK and the top-performing product as anchors for targeted growth.
+
+---
+
+## Customer Intelligence Findings
+
+| Measure                               | Value        |
+| ------------------------------------- | -----------: |
+| Historical Customer Value             | 16.29 M      |
+| At-Risk Customers                     | 837          |
+| At-Risk Historical Revenue            | 1.33 M       |
+| At-Risk % of total revenue            | 7.06 %       |
+| Largest RFM segment by customer count | Lost (1539)  |
+| Largest RFM segment by revenue        | Champions    |
+
+**Observation:** 837 customers are classified as At-Risk, representing 1.33M in historical revenue. With total revenue of 18.85M, At-Risk customers account for approximately 7.06% of total revenue. The largest RFM segment by customer count is Lost (1,539), while Champions generate the most revenue.
+
+**Diagnosis:** Customer attrition is concentrated in a sizable Lost segment, while the At-Risk group represents a meaningful pool of previously generated revenue that is vulnerable to further churn.
+
+**Implication:** A disproportionate share of historical revenue is tied to customers showing declining engagement.
+
+**Action:** Prioritize retention outreach toward high-value At-Risk customers specifically, not the segment as a whole.
+
+---
+
+## Product & Market Basket Findings
+
+| Product A                          | Product B                          | Pair Orders | Confidence (A→B) |     Lift |
+| ---------------------------------- | ---------------------------------- | ----------: | ---------------: | -------: |
+| SET 10 CARDS CHEERFUL ROBIN 17065  | JUMBO BAG RED RETROSPOT            |          10 |          100.00% |    10.30 |
+| SET 10 CARDS RED RIDING HOOD 17214 | CHARLIE+LOLA PINK HOT WATER BOTTLE |          15 |           93.75% |    58.62 |
+| PINK HANGING GINGHAM EASTER HEN    | BLUE HANGING GINGHAM EASTER HEN    |          14 |           93.33% | 2,272.39 |
+
+**Observation:** The top three product pairs by confidence show very strong purchase associations, with confidence ranging from 93.33% to 100%. Pair orders range from 10 to 15, while lift indicates that these combinations occur together substantially more often than expected by chance.
+
+**Diagnosis:** These pairs represent the strongest observed A→B purchase relationships in the dataset based on confidence, while the full dataset contains additional product associations that are not shown here.
+
+**Implication:** The highest-confidence pairs are useful candidates for targeted cross-sell prompts or bundle testing, but they should be evaluated alongside other high-lift and sufficiently frequent associations before broad deployment.
+
+**Action:** Pilot these top-three confidence pairs as targeted checkout recommendations, using the strongest-confidence relationships first, and measure incremental conversion against a control group before scaling.
+
+---
+
+## Dashboard-Level Reconciliation Statement
+
+| Check                                                        | Status |
+| ------------------------------------------------------------ | :----: |
+| All KPI cards match PostgreSQL, unfiltered                   | Pass   |
+| Filtered spot-check (date + country) matches                 | Pass   |
+| Slicers correctly propagate across all visuals on their page | Pass   |
