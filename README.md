@@ -2,7 +2,64 @@
 
 An end-to-end e-commerce analytics project built on the **Online Retail II** transactional dataset.
 
-The project transforms raw retail transactions into a validated analytical dataset, models the data in PostgreSQL, performs business analysis with SQL, and delivers an executive-level Power BI dashboard focused on revenue, customers, products, market basket opportunities, and geographic performance.
+The completed Power BI dashboard consists of three interactive pages covering executive performance, customer intelligence, and product/market-basket analysis.
+
+### 1. Executive Overview
+
+Provides a high-level view of business performance, including:
+
+- Net Revenue
+- Orders
+- Customers
+- Average Order Value (AOV)
+- YoY Revenue %
+- Repeat Rate
+- Revenue by Country
+- Monthly Net Revenue Trend
+- Revenue by RFM Segment
+- Net Revenue vs Last Year Revenue
+
+![Executive Overview](./screenshots/01_executive_overview.png)
+
+---
+
+### 2. Customer Intelligence
+
+Provides customer-level analysis using RFM segmentation and purchasing behavior.
+
+Key components include:
+
+- Customer count
+- Repeat Rate
+- At-Risk Customers
+- At-Risk Historical Revenue
+- Historical Customer Value
+- Customer distribution by RFM segment
+- Frequency vs Monetary analysis
+- Customer-level RFM details
+- Recency, Frequency, Monetary value, and AOV
+- Last Purchase Date
+
+![Customer Intelligence](./screenshots/02_customer_intelligence.png)
+
+---
+
+### 3. Product & Market Basket Analysis
+
+Provides product performance and association-rule analysis.
+
+Key components include:
+
+- Top Products by Revenue
+- Top Products by Units Sold
+- Product description slicer
+- Product-pair analysis
+- Pair Orders
+- Confidence
+- Lift
+- Lift vs Confidence visualization
+
+![Product & Market Basket Analysis](./screenshots/03_product_n_market_basket.png)
 
 ---
 

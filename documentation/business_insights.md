@@ -4,12 +4,12 @@
 
 ## Revenue Findings
 
-| Measure                                                          |                               Value |
-| ---------------------------------------------------------------- | ----------------------------------: |
+| Measure                                                          |                               Value  |
+| ---------------------------------------------------------------- | -----------------------------------: |
 | Net Revenue trend, period start → end                            | 796535.0000 -> 432719.0600 (-45.68%) |
-| MoM growth (most recent month)                                   |                             -70.28% |
-| YoY growth (most recent comparable month)                        |                             -42.05% |
-| Primary driver of change (Customers / Orders per Customer / AOV) |                                 N/A |
+| MoM growth (most recent month)                                   |                             -70.28%  |
+| YoY growth (most recent comparable month)                        |                             -42.05%  |
+| Primary driver of change (Customers / Orders per Customer / AOV) |                                 N/A  |
 
 **Observation:** Net revenue declined 45.68% from the beginning of the documented period (December 2009) to the end (December 2011). The most recent month recorded a sharp 70.28% MoM decline and 42.05% YoY decline.
 

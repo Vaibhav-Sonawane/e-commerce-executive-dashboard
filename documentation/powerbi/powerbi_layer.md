@@ -61,10 +61,10 @@ Full measure list and formulas: see `dax_measures.md`.
 
 ### Step 4: Dashboard Pages
 
-| Page                   | Business Question | Key Visuals |
-| ---------------------- | --- | --- |
-| Executive Overview     | How is the business performing? | KPI cards (Net Revenue, Orders, Customers, AOV, Repeat Rate, YoY %); Monthly revenue trend; YoY comparison; Revenue by RFM Segment; Top Products by Revenue; Revenue by Country |
-| Customer Intelligence  | Who generates value, who is at risk? | KPI cards (Customers, Historical Customer Value, Repeat Rate, At-Risk Customers, At-Risk Historical Revenue); RFM segment distribution; Frequency vs. Monetary scatter; Customer detail table |
+| Page | Business Question | Key Visuals |
+| --- | --- | --- |
+| Executive Overview | How is the business performing? | KPI cards (Net Revenue, Orders, Customers, AOV, Repeat Rate, YoY %); Monthly revenue trend; YoY comparison; Revenue by RFM Segment; Top Products by Revenue; Revenue by Country |
+| Customer Intelligence | Who generates value, who is at risk? | KPI cards (Customers, Historical Customer Value, Repeat Rate, At-Risk Customers, At-Risk Historical Revenue); RFM segment distribution; Frequency vs. Monetary scatter; Customer detail table |
 | Product & Market Basket | What should we sell together? | Top Products by Revenue/Units; Product-pair table; Confidence vs. Lift scatter |
 
 ---
